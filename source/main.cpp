@@ -25,4 +25,10 @@ int main()
     people.push_back(Person::makePerson());
     people[0]-> changeDetails("Lorne", 14, "Male");
     people[0]-> getDetails();
+    people.push_back(Person::makePerson());
+    people[1]-> changeDetails("Derrick", 15, "Male");
+    people[1]-> getDetails();
+    people[1]-> addRelationship(relationshipType::sibling, people[0]);
+    std::cout << people[1]-> checkRelationship(people[0]) << std::endl;
+    return 0;
 }
