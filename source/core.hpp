@@ -30,7 +30,7 @@ namespace core {
         );
         SetConsoleCursorPosition(console, topLeft);
 #elif defined(Linux)
-        std::cout << "\x1B[2J\x1B[HL";
+        std::cout << "\x1B[2J\x1B[H";
 #endif
     }
 };

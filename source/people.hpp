@@ -1,8 +1,6 @@
 #ifndef PEOPLE_H
 #define PEOPLE_H
 
-#include <vector>
-using namespace std;
 enum relationshipType
 {
 	sibling,
@@ -13,13 +11,10 @@ enum relationshipType
 	spouse,
 	BFF
 };
-static const char * EnumStrings[] = { "siblings", "friends", "enemies", " partners", "engaged", "spouse","Best friends" };
-const char * relationStr( int enumVal )
-{
-  return EnumStrings[enumVal];
+static const char *EnumStrings[] = { "sibling", "friend", "enemies", " partners", "lover", "spouse","best friend" };
+const char *relationStr(int enumVal){
+	return EnumStrings[enumVal];
 }
-
-
 
 class Person
 {
@@ -33,7 +28,8 @@ public:
     std::string name;
     int age;
     std::string gender;
-    //Relationships are in development.
+    
+    //Relationships
 	virtual void addRelationship(relationshipType relationship, Person* target) = 0;
     virtual void removeRelationship(Person* target) = 0;
     virtual void changeRelationship(relationshipType relationship, Person* target) = 0;
@@ -49,7 +45,8 @@ class Follower : public Person
 	void getDetails(){
         std::cout << "Name is " << name << ". This person is an " << age << " year old " << gender << "." << std::endl;
     }
-    //Relationships are in development.
+    
+    //Relationships.
     void addRelationship(relationshipType relationship, Person* target){
     	relationships.push_back(target);
     	_relationships.push_back(relationship);
@@ -57,15 +54,18 @@ class Follower : public Person
     	target -> _relationships.push_back(relationship);
 	}
 	void removeRelationship(Person* target){
-
 	}
 	void changeRelationship(relationshipType relationship, Person* target){
-
+		for(int a = 0; a < relationships.size(); a++){
+			if(relationships[a] == target){
+				_relationships[a] = relationship;	
+			}
+		}
 	}
 	std::string checkRelationship(Person* target){
         for(int a = 0; a < relationships.size(); a++){
             if(relationships[a] == target){
-                return ("The relationship between " + this-> name + " and " + relationships[a]-> name + " is " + relationStr(_relationships[a]) + ".");
+                return (relationships[a]-> name + " is " + this-> name + "\'s " + relationStr(_relationships[a]) + ".");
                 break;
             }
         }
