@@ -8,11 +8,17 @@ This is a text based adventure game(like Zork).
  * Clear console function
  * People factory
  * Relationships mechanic
+ * Cross-platform compatibility(Confirmed on Linux & Windows)
 
 ### Next up:
  * Working vocabulary system
 
 ### Changelogs:
+#### 16/06/2016
+ * [+] Debug mode now accessible through main menu by typing '2001' as a response. Currently it only debugs people factory and relationships.
+ * [+] Added ```newGame()``` function, accessible with corresponding number. Others will just reload ```main()```
+ * [+] Merged ```addRelationship()``` and ```removeRelationship()``` into ```changeRelationship()```accessible through an extra argument.
+ * [+] implemented removing and changing relationship code.
 #### 14/06/2016
  * [+] Re-added non-functioning main menu.
  * [+] A slight change in ``` checkRelationship()``` function and the ```relationStr()``` string array. Now it outputs strings about the relationship status between two people that makes more sense.
