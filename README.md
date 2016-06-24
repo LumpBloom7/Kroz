@@ -7,15 +7,20 @@ This is a text based adventure game(like Zork).
  * Main Menu (Just for show, doesn't do anything)
  * Clear console function
  * People factory
- * Relationships mechanic
  * Cross-platform compatibility(Confirmed on Linux & Windows)
  * Partial savegame system for NPC's
 
 ### Next up:
+ * Revamped relationships mechanic
  * Cross-platform make directory function(for savegames)
  * Working vocabulary system
 
 ### Changelogs:
+
+#### 24/06/2016
+ * [+] Replace all raw pointers with smart pointers(```std::shared_ptr<Person>```) to prevent possible memory leaks.
+ * [-] Removed relationships mechanic for a major revision.
+
 #### 21/06/2016
  * [+] Added saving and loading functions into ```people``` classes.
  * [+] Added saving and loading into debug screen.
