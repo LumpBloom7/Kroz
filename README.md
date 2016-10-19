@@ -9,6 +9,7 @@ This is a text based adventure game(like Zork).
  * People factory
  * Cross-platform compatibility(Confirmed on Linux & Windows)
  * Partial savegame system for NPC's
+ * Somewhat working console functionality(to control game variables)
 
 ### Next up:
  * Revamped relationships mechanic
@@ -17,8 +18,12 @@ This is a text based adventure game(like Zork).
 
 ### Changelogs:
 
+#### 19/10/2016
+ * [+] Somewhat working console functionality(to control game variables)
+ * [+] Improved variable declaration
+
 #### 24/06/2016
- * [+] Replace all raw pointers with smart pointers(```std::shared_ptr<Person>```) to prevent possible memory leaks.
+ * [+] Replaced all raw pointers with smart pointers(```std::shared_ptr<Person>```) to prevent possible memory leaks.
  * [-] Removed relationships mechanic for a major revision.
 
 #### 21/06/2016

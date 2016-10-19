@@ -19,7 +19,7 @@ int main()
               << termcolor::green
               << "Please enter your selecion(1,2,3,4,5): " << std::flush;
 
-    std::string playerReply;
+    std::string playerReply{};
     std::cin >> playerReply;
 
     if(playerReply == "1")
@@ -31,15 +31,15 @@ int main()
     else if(playerReply == "2001") { //Debug every funtion
         core::clear();
         std::vector<std::shared_ptr<Person>> people;
-        people.push_back(makePerson());
+        people.push_back(makePerson(0));
         people[0]-> changeDetails("Lorne", 14, "male");
         people[0]-> getDetails();
 
-        people.push_back(makePerson());
+        people.push_back(makePerson(0));
         people[1]-> changeDetails("Derrick", 15, "male");
         people[1]-> getDetails();
 
-        people.push_back(makePerson());
+        people.push_back(makePerson(0));
         people[2]-> changeDetails("Colette", 21, "female");
         people[2]-> getDetails();
 
@@ -55,6 +55,12 @@ int main()
         people[0]-> getDetails();
         people[1]-> getDetails();
         people[2]-> getDetails();
+        
+        core::experimental::console::save();
+        core::experimental::console::startConsole();
+        std::cin.get();
+        std::cin.get();
+        main();
 
     } else
         main();
@@ -71,7 +77,7 @@ void newGame()
               << termcolor::green
               << "Please enter your choice(y/N): " <<std::flush;
 
-    std::string playerReply;
+    std::string playerReply{};
     std::cin >> playerReply;
 
     if(playerReply == "N" || playerReply == "n")
@@ -93,7 +99,7 @@ void newGame()
 void continueGame()
 {
     core::clear();
-    int lastPlayedChapter;
+    int lastPlayedChapter{};
     switch(lastPlayedChapter) {
     /*case 1:
     	chapter1();
@@ -123,7 +129,7 @@ void continueGame()
 void chapterSelect()
 {
     core::clear();
-    bool chapter2Unlocked, chapter3Unlocked, chapter4Unlocked;
+    bool chapter2Unlocked{}, chapter3Unlocked{}, chapter4Unlocked{};
     std::cout << termcolor::bold
               << "Chapter select: " << std::endl
               << termcolor::reset
@@ -147,7 +153,7 @@ void chapterSelect()
               << termcolor::green
               << "Please input a number: " << std::flush;
 
-    std::string playerReply;
+    std::string playerReply{};
     std::cin >> playerReply;
 
     if(playerReply == "0")
@@ -161,3 +167,4 @@ void chapterSelect()
     else if(playerReply == "4")
         main();
 }
+
