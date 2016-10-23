@@ -16,12 +16,12 @@ enum relationshipType {
     parent,
     child,
 };
-static const char *enumStrings[]{ "sibling", "friend", "enemies", " partners", "lover", "spouse", "best friend", "parent", "child"};
+static const char *enumStrings[] = { "sibling", "friend", "enemies", " partners", "lover", "spouse", "best friend", "parent", "child"};
 
 class Person {
 	public:
 		static std::shared_ptr<Person> makePerson();
-		static vector<relationshipType> relationships
+
 		void changeDetails(std::string inputName, int inputAge, std::string inputGender) {
 			name = inputName;
 			age = inputAge;
