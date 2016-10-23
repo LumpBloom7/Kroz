@@ -18,6 +18,9 @@ This is a text based adventure game(like Zork).
 
 ### Changelogs:
 
+#### 23/10/2016
+ * [+] Added rough database for storing character relationships. Not good for practical use though. It's located in ```core.hpp >> experimental::tables```.
+
 #### 19/10/2016
  * [+] Somewhat working console functionality(to control game variables)
  * [+] Improved variable declaration
