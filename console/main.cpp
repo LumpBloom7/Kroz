@@ -26,7 +26,7 @@ std::string input;
 void saveVariables() {
 
 
-	std::ofstream os((/*"console\\" + */name + ".json"));
+	std::ofstream os(("console\\" + name + ".json"));
 	cereal::JSONOutputArchive archive(os);
 
 	archive( CEREAL_NVP(health),
@@ -38,7 +38,7 @@ void saveVariables() {
 			 CEREAL_NVP(thereIsNoMonkey)); // Names the output the same as the variable name
 }
 void loadVariables() {
-	std::ifstream is(/*"console\\" + */name + ".json");
+	std::ifstream is("console\\" + name + ".json");
 	cereal::JSONInputArchive archive(is);
 
 	archive( health, attackModifier, defenseModifier, godMode );

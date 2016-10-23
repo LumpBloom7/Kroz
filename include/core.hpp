@@ -46,7 +46,7 @@ namespace core {
 			}*/
 			void startConsole() {
 #if defined(Windows)
-				ShellExecute(NULL, "open", "console\\Kroz Console.exe", NULL, NULL, SW_SHOWDEFAULT);//Need this to close as parent closes, need to use SendMessage();
+				ShellExecute(NULL, "open", "console\\KrozConsole.exe", NULL, NULL, SW_SHOWDEFAULT);//Need this to close as parent closes, need to use SendMessage();
 #elif defined(Linux)
 #endif
 			}
