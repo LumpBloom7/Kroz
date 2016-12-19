@@ -1,6 +1,6 @@
 {
-  "name": "Kroz",
-  "tagline": "A text-based adventure game written in C++.",
-  "body": "What is this\r\n============\r\nThis is my attempt to create a text-based adventure game. It's not that good, but I'm learning as I'm creating this.\r\nThis is a console project created using C++. If it becomes goo enough I'll maybe open-source it.  \r\n\r\n\r\nFeatures\r\n========\r\n\r\n### Currently implemented:\r\n * Main Menu (Just for show, doesn't do anything)\r\n * Clear console function\r\n * People factory\r\n * Cross-platform compatibility(Confirmed on Linux & Windows)\r\n * Partial savegame system for NPC's\r\n * Somewhat working console functionality(to control game variables)  \r\n\r\n### Next up:\r\n * Revamped relationships mechanic\r\n * Cross-platform make directory function(for savegames)\r\n * Working vocabulary system  \r\n\r\n\r\n\r\nChangelogs\r\n==========\r\n\r\nRefer to [this link](https://github.com/LumpBloom7/Kroz/blob/master/README.md).",
+  "name": "Lumpbloom7.GitHub.io",
+  "tagline": "This is the webpage for my GitHub profile",
+  "body": "About me\r\n========\r\nMy name's Derrick, I'm 15 years old.\r\nI have experience in C++ and C# and I'm currently working on a few personal projects here.\r\n\r\nActive projects\r\n===============\r\n[Kroz](lumpbloom7.github.io/Kroz) - A text-based adventure game.(Currently private, with plans to make it open-source)",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }

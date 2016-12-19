@@ -1,68 +1,137 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Kroz by LumpBloom7</title>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
- </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Kroz</h1>
-      <h2 class="project-tagline">A text-based adventure game written in C++.</h2>
-      <a href="https://github.com/LumpBloom7/Kroz" class="btn">View on GitHub</a>
-      <a href="https://github.com/LumpBloom7/Kroz/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/LumpBloom7/Kroz/tarball/master" class="btn">Download .tar.gz</a>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Kroz</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="css/grayscale.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <i class="fa fa-play-circle"></i> <span class="light">Derrick's</span> GitHub
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#download">Download</a>
+                    </li>
+                    <li>
+                        <a href="http://lumpbloom7.github.io">Main page</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading">Kroz</h1>
+                        <p class="intro-text">A console hacking game.</p>
+                        <a href="#about" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>About this project</h2>
+                <p>This project is a text-based hacking simulator like game.</p>
+                <p> I am currently learning as I make this project, so it's unlikely to be finished anytime soon.</p>
+                <p> It's is currently closed-source, but I have plans to make it open-source when the project is more mature.</p>
+                <a href="https://github.com/lumpbloom7/Kroz" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i><span class="network-name">View on Github</span></a>
+            </div>
+        </div>
     </section>
-    <section class="main-content">
-      <h1>
-<a id="what-is-this" class="anchor" href="#what-is-this" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What is this</h1>
 
-<p>This is my attempt to create a text-based hacker simulator kind of game. It's not that good, but I'm learning as I'm creating this.
-This is a console project created using C++. If it becomes good enough I'll maybe open-source it.  </p>
-
-<h1>
-<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h1>
-
-<h3>
-<a id="currently-implemented" class="anchor" href="#currently-implemented" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Currently implemented:</h3>
-
-<ul>
-<li>Main Menu (Just for show, doesn't do anything)</li>
-<li>Clear console function</li>
-<li>People factory</li>
-<li>Cross-platform compatibility(Confirmed on Linux &amp; Windows)</li>
-<li>Partial savegame system for NPC's</li>
-<li>Somewhat working console functionality(to control game variables)</li>
-<li>Game cinematics</li>    
-</ul>
-
-<h3>
-<a id="next-up" class="anchor" href="#next-up" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Next up:</h3>
-
-<ul>
-<li>Revamped relationships mechanic</li>
-<li>Cross-platform make directory function(for savegames)</li>
-<li>Working vocabulary system<br>
-</li>
-</ul>
-
-<h1>
-<a id="changelogs" class="anchor" href="#changelogs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Changelogs</h1>
-
-<p>Refer to <a href="https://github.com/LumpBloom7/Kroz/blob/master/README.md">this link</a>.</p>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/LumpBloom7/Kroz">Kroz</a> is maintained by <a href="https://github.com/LumpBloom7">LumpBloom7</a>(<a href="http://lumpbloom7.github.io">Other projects</a>).</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
+    <!-- Download Section -->
+    <section id="download" class="content-section text-center">
+        <div class="download-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Downloads</h2>
+                    <a href="https://github.com/LumpBloom7?Kroz/zipball/master" class="btn btn-default btn-lg">Download .zip</a>
+                    <a href="https://github.com/LumpBloom7/Kroz/tarball/master" class="btn btn-default btn-lg">Download .tar.gz</a>
+                </div>
+            </div>
+        </div>
     </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p></p>
+        </div>
+    </footer>
 
-  
-  </body>
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/grayscale.min.js"></script>
+
+</body>
+
 </html>
