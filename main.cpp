@@ -4,12 +4,16 @@
 #include "termcolor.hpp" //This header contains the functionality of adding colors to 'std::cout'.
 #include "core.hpp" //This header contains the core functionality of the game engine.
 #include "people.hpp" //This header contains the people factory and personality system.
+#include "storyline.hpp"
+
 
 void newGame(), continueGame(), chapterSelect(),userSelect(),quit();
 
 int main()
 {
-    core::clear();
+    core::clear(); // Clear the console of anything before loading the main menu.
+    
+    // Prints main menu, duh...
     std::cout << "Welcome to Kroz. What would you like to do?" << std::endl
               << "1. New game" << std::endl
               << "2. Continue" << std::endl
@@ -83,7 +87,7 @@ void newGame()
     if(playerReply == "N" || playerReply == "n")
         main();
     else if(playerReply == "Y" || playerReply == "y")
-        std::cout << "chapter 1" << std::endl;
+        chapter1::story();
     else {
         std::cout << termcolor::red
                   << "ERROR: Invalid response." << std::endl
@@ -133,12 +137,8 @@ void chapterSelect()
     std::cout << termcolor::bold
               << "Chapter select: " << std::endl
               << termcolor::reset
-              << "0. Prologue" << std::endl;
-    if(chapter2Unlocked)
-        std::cout << "1. Terminal" << std::endl;
-    else
-        std::cout << termcolor::blue << "1. <LOCKED>" << termcolor::reset << std::endl;
-
+              << "0. Prologue" << std::endl
+			  << "1. Terminal" << std::endl;
     if(chapter3Unlocked)
         std::cout << "2. Superuser" << std::endl;
     else
@@ -157,9 +157,10 @@ void chapterSelect()
     std::cin >> playerReply;
 
     if(playerReply == "0")
-        std::cout << "3. Prologue" << std::endl;
+        std::cout << "0. Prologue" << std::endl;
     else if(playerReply == "1")
-        std::cout << "3. Terminal" << std::endl;
+        chapter1::story();
+        
     else if(playerReply == "2")
         std::cout << "2. Superuser" << std::endl;
     else if(playerReply == "3")

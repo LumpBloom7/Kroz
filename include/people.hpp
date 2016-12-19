@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include <string>
+#include <map>
 #include "cereal/archives/json.hpp"
 
 enum relationshipType {
@@ -31,10 +32,8 @@ class Person {
 			std::cout << "Name is " << name << ". This person is an " << age << " year old " << gender << "." << std::endl;
 		}
 
-		/*
-				std::vector<relationshipType> relationships;
-				std::vector<Person> relationshipPeople;
-		*/
+		std::map<std::shared_ptr<Person>, relationshipType> relationships;
+		
 		std::string name{};
 		int age{};
 		std::string gender{};

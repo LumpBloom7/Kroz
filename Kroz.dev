@@ -27,9 +27,9 @@ CommandLine=
 Folders=Headers
 IncludeVersionInfo=0
 SupportXPThemes=0
-CompilerSet=4
-CompilerSettings=000000c1c1001000001000000
-UnitCount=3
+CompilerSet=3
+CompilerSettings=000000c1g0000000000000000
+UnitCount=4
 
 [VersionInfo]
 Major=1
@@ -74,6 +74,16 @@ BuildCmd=
 FileName=include\people.hpp
 CompileCpp=1
 Folder=Headers
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit4]
+FileName=Storyline.hpp
+CompileCpp=1
+Folder=
 Compile=1
 Link=1
 Priority=1000

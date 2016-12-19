@@ -1,15 +1,18 @@
 Kroz
 ====
 
-This is a text based adventure game(like Zork).
+This is a text based ~~adventure game(like Zork)~~. 
+
+After 2 months of thinking what should be in an adventure game, I decided to changed the game to be a hacker simulator kind of game(Like watchdogs, but with less bullshit and graphics). Code or mechanics related to the old idea will be gradually removed, they will be placed in a different file so the engine can be releases with those functionality.
 
 ### Currently implemented:
- * Main Menu (Just for show, doesn't do anything)
+ * Main Menu
  * Clear console function
  * People factory
  * Cross-platform compatibility(Confirmed on Linux & Windows)
  * Partial savegame system for NPC's
  * Somewhat working console functionality(to control game variables)
+ * Game cinematics
 
 ### Next up:
  * Revamped relationships mechanic
@@ -17,6 +20,10 @@ This is a text based adventure game(like Zork).
  * Working vocabulary system
 
 ### Changelogs:
+
+#### 19/12/2016
+ * [+] Started working on the storyline.
+ * [+] Unlocked chapter 1 and added some cinematics to it.
 
 #### 19/10/2016
  * [+] Somewhat working console functionality(to control game variables)
