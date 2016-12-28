@@ -5,6 +5,8 @@
 #include "core.hpp" //This header contains the core functionality of the game engine.
 #include "people.hpp" //This header contains the people factory and personality system.
 #include "storyline.hpp"
+#include <cstdio>
+#include <conio.h>
 
 
 void newGame(), continueGame(), chapterSelect(),userSelect(),quit();
@@ -12,27 +14,17 @@ void newGame(), continueGame(), chapterSelect(),userSelect(),quit();
 int main()
 {
     core::clear(); // Clear the console of anything before loading the main menu.
-    
+    std::vector<std::string> menu {"New game", "Continue", "Select chapter", "Select user", "Quit"};
     // Prints main menu, duh...
-    std::cout << "Welcome to Kroz. What would you like to do?" << std::endl
-              << "1. New game" << std::endl
-              << "2. Continue" << std::endl
-              << "3. Select chapter" << std::endl
-              << "4. Select user" << std::endl
-              << "5. Quit" << std::endl
-              << termcolor::green
-              << "Please enter your selecion(1,2,3,4,5): " << std::flush;
+    int playerReply = core::createMenu("Welcome to Kroz. What would you like to do?", menu, false);
 
-    std::string playerReply{};
-    std::cin >> playerReply;
-
-    if(playerReply == "1")
+    if(playerReply == 0)
         newGame();
-    else if(playerReply == "2")
+    else if(playerReply == 1)
         continueGame();
-    else if(playerReply == "3")
+    else if(playerReply == 2)
         chapterSelect();
-    else if(playerReply == "2001") { //Debug every funtion
+    else if(playerReply == 2001) { //Debug every funtion
         core::clear();
         std::vector<std::shared_ptr<Person>> people;
         people.push_back(makePerson(0));
@@ -134,38 +126,29 @@ void chapterSelect()
 {
     core::clear();
     bool chapter2Unlocked{}, chapter3Unlocked{}, chapter4Unlocked{};
-    std::cout << termcolor::bold
-              << "Chapter select: " << std::endl
-              << termcolor::reset
-              << "0. Prologue" << std::endl
-			  << "1. Terminal" << std::endl;
+	std::vector<std::string> menu {"0. Prologue", "1. Terminal"};
     if(chapter3Unlocked)
-        std::cout << "2. Superuser" << std::endl;
+        menu.push_back("2. Superuser");
     else
-        std::cout << termcolor::blue << "2. <LOCKED>" << termcolor::reset << std::endl;
+        menu.push_back("2. <LOCKED>");
 
     if(chapter4Unlocked)
-        std::cout << "3. Bootloader" << std::endl;
+        menu.push_back("3. Bootloader");
     else
-        std::cout << termcolor::blue << "3. <LOCKED>" << termcolor::reset << std::endl;
+        menu.push_back("3. <LOCKED>");
+    
+    int playerReply = core::createMenu("Chapter select", menu, true);
 
-    std::cout << "4. Cancel" << std::endl
-              << termcolor::green
-              << "Please input a number: " << std::flush;
-
-    std::string playerReply{};
-    std::cin >> playerReply;
-
-    if(playerReply == "0")
+    if(playerReply == 0)
         std::cout << "0. Prologue" << std::endl;
-    else if(playerReply == "1")
+    else if(playerReply == 1)
         chapter1::story();
         
-    else if(playerReply == "2")
+    else if(playerReply == 2)
         std::cout << "2. Superuser" << std::endl;
-    else if(playerReply == "3")
+    else if(playerReply == 3)
         std::cout << "3. Bootloader" << std::endl;
-    else if(playerReply == "4")
+    else if(playerReply == -1)
         main();
 }
 

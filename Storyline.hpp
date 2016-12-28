@@ -20,6 +20,17 @@ namespace chapter1 {
 		          << "Monday, 18th of April 2016" << std::endl;
 		bootupCinematics();
 		core::clear();
+		std::cout << "Please register your new HackOS account..." << std::endl
+		          << "Enter Username(Without spaces): " << std::flush;
+		std::string userName;
+		std::cin >> userName;
+		std::string password = core::getPassword("Enter optional password: ");
+		std::vector<std::string> menu {		"1. Programs",
+		                                        "2. E-Mail",
+		                                        "3. Internet",
+		                                        "4. ShutDown"};
+		                                        
+		int results = core::createMenu("What do you want to do?", menu, true);
 		std::cin.get();
 		std::cin.get();
 
@@ -83,6 +94,8 @@ namespace chapter1 {
 			std::cout << std::endl;
 			std::this_thread::sleep_for(std::chrono::milliseconds(50));
 		}
+
+		
 	}
 };
 #endif

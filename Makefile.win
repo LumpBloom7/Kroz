@@ -6,12 +6,12 @@ CC       = gcc.exe -D__DEBUG__
 WINDRES  = windres.exe
 OBJ      = main.o
 LINKOBJ  = main.o
-LIBS     = -L"G:/Software/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -m32 -g3
-INCS     = -I"G:/Software/Dev-Cpp/MinGW64/include" -I"G:/Software/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"G:/Software/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"include/"
-CXXINCS  = -I"G:/Software/Dev-Cpp/MinGW64/include" -I"G:/Software/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"G:/Software/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"G:/Software/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++" -I"include/"
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib32" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -m32 -pg -g3
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"include/"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++" -I"include/"
 BIN      = Kroz.exe
-CXXFLAGS = $(CXXINCS) -Ofast -m32 -std=c++11 -w -pedantic -g3
-CFLAGS   = $(INCS) -Ofast -m32 -std=c++11 -w -pedantic -g3
+CXXFLAGS = $(CXXINCS) -Ofast -m32 -std=c++11 -w -pedantic -pg -g3
+CFLAGS   = $(INCS) -Ofast -m32 -std=c++11 -w -pedantic -pg -g3
 RM       = rm.exe -f
 
 .PHONY: all all-before all-after clean clean-custom

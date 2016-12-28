@@ -1,7 +1,7 @@
 Kroz
 ====
 
-This is a text based ~~adventure game(like Zork)~~. 
+This is a text based ~~adventure game(like Zork)~~.
 
 After 2 months of thinking what should be in an adventure game, I decided to changed the game to be a hacker simulator kind of game(Like watchdogs, but with less bullshit and graphics). Code or mechanics related to the old idea will be gradually removed, they will be placed in a different file so the engine can be releases with those functionality.
 
@@ -17,9 +17,12 @@ After 2 months of thinking what should be in an adventure game, I decided to cha
 ### Next up:
  * Revamped relationships mechanic
  * Cross-platform make directory function(for savegames)
- * Working vocabulary system
 
 ### Changelogs:
+
+#### 28/12/2016
+ * [+] Revamped all menus. Uses ARROW_UP and ARROW_DOWN for vertical navigation, ARROW_LEFT to go back, ARROW_RIGHT to select.(Does not work on linux yet.) Located in ```core::createMenu(std::string title, std::vector<std::string> content, bool backEnabled)```
+ * [-] Linux version does not work now thanks to the above update.
 
 #### 19/12/2016
  * [+] Started working on the storyline.
