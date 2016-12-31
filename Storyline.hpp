@@ -6,7 +6,7 @@
 
 namespace chapter1 {
 	void actions(), bootupCinematics();
-	void story() {
+	int story() {
 		core::clear();
 		std::cout << termcolor::magenta
 		          << "You are a professional hacker" << std::endl;
@@ -25,15 +25,36 @@ namespace chapter1 {
 		std::string userName;
 		std::cin >> userName;
 		std::string password = core::getPassword("Enter optional password: ");
-		std::vector<std::string> menu {		"1. Programs",
-		                                        "2. E-Mail",
-		                                        "3. Internet",
-		                                        "4. ShutDown"};
+	UI:
+		std::vector<std::string> menu {	"1. Programs", "2. E-Mail", "3. Internet", "4. ShutDown"};
 		                                        
 		int results = core::createMenu("What do you want to do?", menu, true);
+		
+		switch(results){
+			case 0:{
+				//Programs menu...
+				break;
+			}
+			case 1:{
+				//E-Mail interface
+				break;
+			}
+			case 2:{
+				//Internet browser that does not browse the web
+				break;
+			}
+			case 3:{
+				return -1;
+				break;
+			}
+			default:{
+				goto UI;
+				break;
+			}
+		}
 		std::cin.get();
 		std::cin.get();
-
+	return 0;
 	}
 	void actions() {
 		//std::cout <<

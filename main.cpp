@@ -1,12 +1,11 @@
 #include <iostream>
 #include <vector>
 #include <memory>
-#include "termcolor.hpp" //This header contains the functionality of adding colors to 'std::cout'.
-#include "core.hpp" //This header contains the core functionality of the game engine.
-#include "people.hpp" //This header contains the people factory and personality system.
-#include "storyline.hpp"
-#include <cstdio>
-#include <conio.h>
+#include <string>
+#include "termcolor.hpp" // This header contains the functionality of adding colors to 'std::cout'.
+#include "core.hpp" // This header contains the core functionality of the game engine.
+#include "people.hpp" // This header contains the people factory and personality system.
+#include "storyline.hpp" // This header contains the storyboard data for the game.
 
 
 void newGame(), continueGame(), chapterSelect(),userSelect(),quit();
@@ -14,53 +13,63 @@ void newGame(), continueGame(), chapterSelect(),userSelect(),quit();
 int main()
 {
     core::clear(); // Clear the console of anything before loading the main menu.
-    std::vector<std::string> menu {"New game", "Continue", "Select chapter", "Select user", "Quit"};
+    std::vector<std::string> menu {"New game", "Continue", "Select chapter", "Select user", "Debug", "Quit"};
     // Prints main menu, duh...
     int playerReply = core::createMenu("Welcome to Kroz. What would you like to do?", menu, false);
 
-    if(playerReply == 0)
-        newGame();
-    else if(playerReply == 1)
-        continueGame();
-    else if(playerReply == 2)
-        chapterSelect();
-    else if(playerReply == 2001) { //Debug every funtion
-        core::clear();
-        std::vector<std::shared_ptr<Person>> people;
-        people.push_back(makePerson(0));
-        people[0]-> changeDetails("Lorne", 14, "male");
-        people[0]-> getDetails();
+	switch(playerReply){
+		case 0:{
+			newGame();
+			break;
+		}
+		case 1:{
+			continueGame();
+			break;
+		}
+		case 2:{
+			chapterSelect();
+			break;
+		}
+		case 4:{
+			core::clear();
+        	std::vector<std::shared_ptr<Person>> people;
+	        people.push_back(makePerson(0));
+    	    people[0]-> changeDetails("Lorne", 14, "male");
+        	people[0]-> getDetails();
 
-        people.push_back(makePerson(0));
-        people[1]-> changeDetails("Derrick", 15, "male");
-        people[1]-> getDetails();
+        	people.push_back(makePerson(0));
+        	people[1]-> changeDetails("Derrick", 15, "male");
+        	people[1]-> getDetails();
 
-        people.push_back(makePerson(0));
-        people[2]-> changeDetails("Colette", 21, "female");
-        people[2]-> getDetails();
+        	people.push_back(makePerson(0));
+        	people[2]-> changeDetails("Colette", 21, "female");
+        	people[2]-> getDetails();
 
-        for(int x = 0; x < people.size(); x++) {
-            people[x]-> save();
-        }
-        std::cin.get();
-        std::cin.get();
+        	for(int x = 0; x < people.size(); x++) {
+            	people[x]-> save();
+        	}
+        	std::cin.get();
+        	std::cin.get();
 
-        for(int x = 0; x < people.size(); x++) {
-            people[x]-> load();
-        }
-        people[0]-> getDetails();
-        people[1]-> getDetails();
-        people[2]-> getDetails();
+        	for(int x = 0; x < people.size(); x++) {
+            	people[x]-> load();
+        	}
+        	people[0]-> getDetails();
+        	people[1]-> getDetails();
+        	people[2]-> getDetails();
         
-        core::experimental::console::save();
-        core::experimental::console::startConsole();
-        std::cin.get();
-        std::cin.get();
-        main();
-
-    } else
-        main();
-
+        	core::experimental::console::save();
+        	core::experimental::console::startConsole();
+        	std::cin.get();
+        	std::cin.get();
+        	main();
+        	break;
+        }
+		default:{
+        	main();
+        	break;
+        }
+	}
     return 0;
 }
 void newGame()
@@ -78,8 +87,11 @@ void newGame()
 
     if(playerReply == "N" || playerReply == "n")
         main();
-    else if(playerReply == "Y" || playerReply == "y")
-        chapter1::story();
+    else if(playerReply == "Y" || playerReply == "y"){
+    	int result = chapter1::story();
+    	if(result == -1)
+    		main();
+	}
     else {
         std::cout << termcolor::red
                   << "ERROR: Invalid response." << std::endl
@@ -98,7 +110,9 @@ void continueGame()
     int lastPlayedChapter{};
     switch(lastPlayedChapter) {
     /*case 1:
-    	chapter1();
+    	int result = chapter1::story();
+    	if(result == -1)
+    		main();
     	break;
     case 2:
     	chapter2();
@@ -139,16 +153,33 @@ void chapterSelect()
     
     int playerReply = core::createMenu("Chapter select", menu, true);
 
-    if(playerReply == 0)
-        std::cout << "0. Prologue" << std::endl;
-    else if(playerReply == 1)
-        chapter1::story();
-        
-    else if(playerReply == 2)
-        std::cout << "2. Superuser" << std::endl;
-    else if(playerReply == 3)
-        std::cout << "3. Bootloader" << std::endl;
-    else if(playerReply == -1)
-        main();
+    switch(playerReply){
+    	case 0:{
+    		std::cout << "0. Prologue" << std::endl;
+    		break;
+    	}
+    	case 1:{
+    		int result = chapter1::story();
+    		if(result == -1)
+    			main();
+			break;
+		}
+		case 2:{
+			std::cout << "2. Superuser" << std::endl;
+			break;
+		}
+		case 3:{
+			std::cout << "3. Bootloader" << std::endl;
+			break;
+		}
+		case -1:{
+			main();
+			break;
+		}
+		default:{
+			chapterSelect();
+			break;
+		}
+    }
 }
 

@@ -2,7 +2,6 @@
 #define PEOPLE_H
 
 #include <fstream>
-#include <string>
 #include <map>
 #include "cereal/archives/json.hpp"
 

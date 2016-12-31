@@ -17,7 +17,6 @@
 #endif
 
 #include <fstream>
-#include <string>
 #include "cereal/archives/json.hpp"
 #include <stdio.h>
 #include <stdlib.h>
