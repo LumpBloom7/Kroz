@@ -3,10 +3,105 @@
 
 #include <chrono>
 #include <thread>
+#include <algorithm>
 
+int main(), terminal();
+namespace systemFS { // Experimental gameplay mechanic to simulate an actually file system that will be used within the game.
+	class File { // Virtual file for the terminal, will be stored in an std::vector located in the class Directory.
+		public:
+		static std::shared_ptr<File> makeFile();
+			void changeDetails(std::string name)
+			{
+				fileName = name;
+			}
+			void changeDetails(bool isHidden)
+			{
+				hidden = isHidden;
+			}
+			void changeDetails(std::string name, bool isHidden)
+			{
+				fileName = name;
+				hidden = isHidden;
+			}
+			void changeContents(std::string fileContent)
+			{
+				content = fileContent;
+			}
+			std::string getFileName()
+			{
+				return fileName;
+			}
+			bool getHiddenStatus()
+			{
+				return hidden;
+			}
+		private:
+			bool hidden {};
+			std::string content{};
+			std::string fileName{};
+	};
+	static std::shared_ptr<File> makeFile()
+	{
+		return std::make_shared<File>();
+	}
+	class Directory { // Virtual directory for the terminal
+		public:
+			static std::shared_ptr<Directory> makeDirectory();
+			std::string getName(){
+				return name;
+			}
+			bool isHidden(){
+				return hidden;
+			}
+			void changeDetails(std::string newName)
+			{
+				name = newName;
+			}
+			void changeDetails(bool isHidden)
+			{
+				hidden = isHidden;
+			}
+			void changeDetails(std::string newName, bool isHidden)
+			{
+				name = newName;
+				hidden = isHidden;
+			}
+			std::vector< std::shared_ptr<Directory> > getSubDirectories(){
+				return subDirectories;
+			}
+			std::string getFolderName(){
+				return name;
+			}
+			void createDirectory(std::string directoryName){
+				auto a = std::make_shared<Directory>();
+				a -> changeDetails(directoryName);
+				subDirectories.push_back(a);
+			}
+			void createDirectory(std::string directoryName, bool isHidden){
+				auto a = std::make_shared<Directory>();
+				a -> changeDetails(directoryName);
+				a -> changeDetails(isHidden);
+				subDirectories.push_back(a);
+			}
+		private:
+			std::string name;
+			bool hidden{};
+			std::vector< std::shared_ptr<Directory> > subDirectories{};
+			std::vector<std::shared_ptr<File>> files{};
+	};
+	static std::shared_ptr<Directory> makeDirectory(){
+		return std::make_shared<Directory>();
+	}
+	
+}
 namespace chapter1 {
-	void actions(), bootupCinematics();
-	int story() {
+
+
+	int actions(), programsList();
+	void bootupCinematics();
+
+	int story() // Storyline
+	{
 		core::clear();
 		std::cout << termcolor::magenta
 		          << "You are a professional hacker" << std::endl;
@@ -20,53 +115,95 @@ namespace chapter1 {
 		          << "Monday, 18th of April 2016" << std::endl;
 		bootupCinematics();
 		core::clear();
-		std::cout << "Please register your new HackOS account..." << std::endl
-		          << "Enter Username(Without spaces): " << std::flush;
-		std::string userName;
-		std::cin >> userName;
-		std::string password = core::getPassword("Enter optional password: ");
-	UI:
-		std::vector<std::string> menu {	"1. Programs", "2. E-Mail", "3. Internet", "4. ShutDown"};
-		                                        
-		int results = core::createMenu("What do you want to do?", menu, true);
-		
-		switch(results){
-			case 0:{
-				//Programs menu...
-				break;
-			}
-			case 1:{
-				//E-Mail interface
-				break;
-			}
-			case 2:{
-				//Internet browser that does not browse the web
-				break;
-			}
-			case 3:{
-				return -1;
-				break;
-			}
-			default:{
-				goto UI;
-				break;
-			}
+		if (player::userName == "") {
+			std::cout << "Please register your new HackOS account..." << std::endl
+			          << "Enter Username(Without spaces): " << std::flush;
+			std::cin >> player::userName;
+			std::string password = core::console::getPassword("Enter optional password: ");
 		}
+		actions();
 		std::cin.get();
 		std::cin.get();
-	return 0;
+		return 0;
 	}
-	void actions() {
-		//std::cout <<
+	int actions() // Lets the player interact with his virtual computer
+	{
+		std::vector<std::string> menu {"0. Terminal", "1. Programs", "2. E-Mail", "3. Internet", "4. ShutDown"};
+
+		int results = core::createMenu("What do you want to do?", menu, true);
+
+		switch (results) {
+			case 0: {
+					// Terminal
+					//terminal();
+				}
+			case 1: {
+					//Programs menu...
+					programsList();
+					break;
+				}
+			case 2: {
+					//E-Mail interface
+					break;
+				}
+			case 3: {
+					//Internet browser that does not browse the web
+					break;
+				}
+			case 4: {
+					::main();
+					return 0;
+				}
+			default: {
+					actions();
+				}
+		}
+		actions();
 	}
-	void bootupCinematics() {
+	int terminal() // Experimental terminal functionality
+	{
+		core::clear();
+		while(true) {
+			std::cout << "Computer > " << std::flush;
+			std::string command{};
+			std::cin >> command;
+			//Process command
+			break;
+		}
+	}
+	int programsList() // A list of shortcuts to usefull tools within the game
+	{
+		std::vector<std::string> menu{"E-Mail"};
+		if(player::internetUnlocked) {
+			menu.push_back("Internet");
+		}
+		if(player::passwordCracker) {
+			menu.push_back("Password Cracker");
+		}
+
+		menu.push_back("Return");
+		int results = core::createMenu("Programs", menu, true);
+		switch (results) {
+			case 0: {
+
+				}
+			case 1: {
+
+				}
+			case -1: {
+
+				}
+		}
+	}
+	void bootupCinematics() // Self explanatory
+	{
 		std::this_thread::sleep_for(std::chrono::seconds(3));
 		core::clear();
-		for(int x = 0; x < (core::getConsoleWidth()/2) - 10; x++) {
+		for (int x = 0; x < (core::console::getConsoleWidth() / 2) - 10; x++) {
 			std::cout << "=" << std::flush;
 		}
 		std::cout << "HackOS v0.59.32 Beta" << std::flush;
-		for(int x = 0; x < (core::getConsoleWidth()/2) - 10; x++) {
+		for (int x = 0; x < (core::console::getConsoleWidth() / 2) - 10; x++) {
 			std::cout << "=" << std::flush;
 		}
 		std::cout << "Kernel loaded." << std::endl;
@@ -111,12 +248,10 @@ namespace chapter1 {
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 		std::cout << termcolor::green << "Core systems file sucessfully loaded." << std::endl;
 
-		for(int x = 0; x < core::getConsoleHeight(); x++) {
+		for (int x = 0; x < core::console::getConsoleHeight(); x++) {
 			std::cout << std::endl;
 			std::this_thread::sleep_for(std::chrono::milliseconds(50));
 		}
-
-		
 	}
 };
 #endif

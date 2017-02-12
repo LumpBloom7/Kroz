@@ -91,7 +91,7 @@ namespace cereal
 
       @relates SizeTag
       @ingroup Utility */
-  template <class T>
+  template <class T> inline
   SizeTag<T> make_size_tag( T && sz )
   {
     return {std::forward<T>(sz)};
@@ -104,14 +104,14 @@ namespace cereal
       state or output extra information for a type, specialize this function
       for the archive type and the types that require the extra information.
       @ingroup Internal */
-  template <class Archive, class T>
+  template <class Archive, class T> inline
   void prologue( Archive & /* archive */, T const & /* data */)
   { }
 
   //! Called after a type is serialized to tear down any special archive state
   //! for processing some type
   /*! @ingroup Internal */
-  template <class Archive, class T>
+  template <class Archive, class T> inline
   void epilogue( Archive & /* archive */, T const & /* data */)
   { }
 
@@ -476,6 +476,7 @@ namespace cereal
       {
         static const auto hash = std::type_index(typeid(T)).hash_code();
         const auto insertResult = itsVersionedTypes.insert( hash );
+        const auto lock = detail::StaticObject<detail::Versions>::lock();
         const auto version =
           detail::StaticObject<detail::Versions>::getInstance().find( hash, detail::Version<T>::version );
 
@@ -838,6 +839,9 @@ namespace cereal
 
         return *self;
       }
+
+      //! Befriend for versioning in load_and_construct
+      template <class A, class B, bool C, bool D, bool E, bool F> friend struct detail::Construct;
 
       //! Registers a class version with the archive and serializes it if necessary
       /*! If this is the first time this class has been serialized, we will record its

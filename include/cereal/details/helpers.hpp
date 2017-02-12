@@ -191,7 +191,7 @@ namespace cereal
   }
 
   //! Convenience for creating a templated NVP
-  /*! For use in inteneral generic typing functions which have an
+  /*! For use in internal generic typing functions which have an
       Archive type declared
       @internal */
   #define CEREAL_NVP_(name, value) ::cereal::make_nvp<Archive>(name, value)
@@ -225,8 +225,29 @@ namespace cereal
     /* The rtti virtual function only exists to enable an archive to
        be used in a polymorphic fashion, if necessary.  See the
        archive adapters for an example of this */
-    class OutputArchiveBase { private: virtual void rtti(){} };
-    class InputArchiveBase { private: virtual void rtti(){} };
+    class OutputArchiveBase
+    {
+      public:
+        OutputArchiveBase() = default;
+        OutputArchiveBase( OutputArchiveBase && ) CEREAL_NOEXCEPT {}
+        OutputArchiveBase & operator=( OutputArchiveBase && ) CEREAL_NOEXCEPT { return *this; }
+        virtual ~OutputArchiveBase() CEREAL_NOEXCEPT = default;
+
+      private:
+        virtual void rtti() {}
+    };
+
+    class InputArchiveBase
+    {
+      public:
+        InputArchiveBase() = default;
+        InputArchiveBase( InputArchiveBase && ) CEREAL_NOEXCEPT {}
+        InputArchiveBase & operator=( InputArchiveBase && ) CEREAL_NOEXCEPT { return *this; }
+        virtual ~InputArchiveBase() CEREAL_NOEXCEPT = default;
+
+      private:
+        virtual void rtti() {}
+    };
 
     // forward decls for polymorphic support
     template <class Archive, class T> struct polymorphic_serialization_support;
