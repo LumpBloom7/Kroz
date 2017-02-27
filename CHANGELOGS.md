@@ -1,5 +1,8 @@
 Kroz changelogs
 ===============
+#### 27/02/2017
+ * [+] The virtual directory system now can sort itself and display itself. This function can be called by ```sortDir()``` and ```dir()``` respectively. The ```sortDir()``` sorts the directories in a somewhat odd manner, where anything that is in upper case is guaranteed to be on the top, followed by the lower case directory names. Will hopefully be ironed out in the next commit.
+ * [+] Clean out some unused includes and funtions. ```People.hpp``` still exist but is not being used by the program at its current state.
 
 #### 12/02/2017
  * [+]<***EXPERIMENTAL***> A virtual computer with its own virtual file system, you can create new files, create subdirectories, etc. All of these are located in the namespace ```systemFS```

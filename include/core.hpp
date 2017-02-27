@@ -2,12 +2,8 @@
 #define CORE_H
 
 #include <fstream>
-#include <stdio.h>
-#include <stdlib.h>
 #include <sys/stat.h>
-#include <string>
 #include "cereal/archives/json.hpp"
-#include "player.hpp"
 
 #if defined(_WIN32) || defined(_WIN64)
 #   define Windows
@@ -165,9 +161,6 @@ namespace core {
 		std::cout << termcolor::reset;
 	}
 
-
-
-
 	int createMenu(std::string title, std::vector<std::string> menuContent, bool backEnabled)  // Creates a menu without using the nCurses library, not likely to be efficient. Still needs linux code.
 	{
 		core::clear();
@@ -224,10 +217,10 @@ namespace core {
 					}
 					std::cout << menuContent[a] << termcolor::reset << std::endl;
 				}
-			} else if(((GetAsyncKeyState ( VK_RETURN ) & SHRT_MAX) || (GetAsyncKeyState ( VK_LEFT ) & SHRT_MAX)) && failcheck)  {
+			} else if((GetAsyncKeyState ( VK_RETURN ) & SHRT_MAX)&& failcheck)  {
 				std::cin.ignore();
 				return pointerCoord;
-			} else if((backEnabled == true) && (((GetAsyncKeyState ( VK_ESCAPE ) & SHRT_MAX) || (GetAsyncKeyState ( VK_LEFT ) & SHRT_MAX)) && failcheck))  {
+			} else if((backEnabled == true) && ((GetAsyncKeyState ( VK_ESCAPE ) & SHRT_MAX)  && failcheck) ) {
 				return -1;
 			}
 			failcheck = true;

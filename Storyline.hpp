@@ -4,24 +4,51 @@
 #include <chrono>
 #include <thread>
 #include <algorithm>
-
 int main(), terminal();
+
 namespace systemFS { // Experimental gameplay mechanic to simulate an actually file system that will be used within the game.
+	enum fileTypes {
+		text = 0,
+		executable = 1,
+		audio = 2,
+		image = 3,
+		video = 4
+	};
 	class File { // Virtual file for the terminal, will be stored in an std::vector located in the class Directory.
 		public:
-		static std::shared_ptr<File> makeFile();
+			static std::shared_ptr<File> makeFile();
 			void changeDetails(std::string name)
 			{
 				fileName = name;
+			}
+			void changeDetails(int FileType)
+			{
+				fileType = FileType;
 			}
 			void changeDetails(bool isHidden)
 			{
 				hidden = isHidden;
 			}
+			void changeDetails(std::string name, int FileType)
+			{
+				fileName = name;
+				fileType = FileType;
+			}
+			void changeDetails(bool isHidden, int FileType)
+			{
+				hidden = isHidden;
+				fileType = FileType;
+			}
 			void changeDetails(std::string name, bool isHidden)
 			{
 				fileName = name;
 				hidden = isHidden;
+			}
+			void changeDetails(std::string name, bool isHidden, int FileType)
+			{
+				fileName = name;
+				hidden = isHidden;
+				fileType = FileType;
 			}
 			void changeContents(std::string fileContent)
 			{
@@ -39,18 +66,18 @@ namespace systemFS { // Experimental gameplay mechanic to simulate an actually f
 			bool hidden {};
 			std::string content{};
 			std::string fileName{};
+			int fileType = fileTypes::text;
 	};
-	static std::shared_ptr<File> makeFile()
-	{
-		return std::make_shared<File>();
-	}
 	class Directory { // Virtual directory for the terminal
 		public:
+			std::string fullPath;
 			static std::shared_ptr<Directory> makeDirectory();
-			std::string getName(){
+			std::string getName()
+			{
 				return name;
 			}
-			bool isHidden(){
+			bool isHidden()
+			{
 				return hidden;
 			}
 			void changeDetails(std::string newName)
@@ -66,42 +93,124 @@ namespace systemFS { // Experimental gameplay mechanic to simulate an actually f
 				name = newName;
 				hidden = isHidden;
 			}
-			std::vector< std::shared_ptr<Directory> > getSubDirectories(){
+			std::vector< std::shared_ptr<Directory> > getSubDirectories()
+			{
 				return subDirectories;
 			}
-			std::string getFolderName(){
+			std::string getFolderName()
+			{
 				return name;
 			}
-			void createDirectory(std::string directoryName){
+			void createDirectory(std::string directoryName)
+			{
 				auto a = std::make_shared<Directory>();
 				a -> changeDetails(directoryName);
+				a -> fullPath = fullPath + a -> name + " > ";
 				subDirectories.push_back(a);
 			}
-			void createDirectory(std::string directoryName, bool isHidden){
+			void createDirectory(std::string directoryName, bool isHidden)
+			{
 				auto a = std::make_shared<Directory>();
+
 				a -> changeDetails(directoryName);
+				a -> fullPath = fullPath + a -> name + " > ";
 				a -> changeDetails(isHidden);
 				subDirectories.push_back(a);
+			}
+			void createFile(std::string fileName)
+			{
+				auto a = std::make_shared<File>();
+				a -> changeDetails(fileName);
+				a -> changeContents("");
+			}
+			void createFile(std::string fileName, int fileType)
+			{
+				auto a = std::make_shared<File>();
+				a -> changeDetails(fileName, fileType);
+				a -> changeContents("");
+			}
+			void createFile(std::string fileName, bool isHidden)
+			{
+				auto a = std::make_shared<File>();
+				a -> changeDetails(fileName);
+				a -> changeDetails(isHidden);
+				a -> changeContents("");
+			}
+			void createFile(std::string fileName, int fileType, bool isHidden)
+			{
+				auto a = std::make_shared<File>();
+				a -> changeDetails(fileName, isHidden, fileType);
+				a -> changeContents("");
+			}
+			void createFile(std::string fileName, std::string content)
+			{
+				auto a = std::make_shared<File>();
+				a -> changeDetails(fileName);
+				a -> changeContents(content);
+			}
+			void createFile(std::string fileName, int fileType, std::string content)
+			{
+				auto a = std::make_shared<File>();
+				a -> changeDetails(fileName);
+				a -> changeContents(content);
+			}
+			void createFile(std::string fileName, bool isHidden, std::string content)
+			{
+				auto a = std::make_shared<File>();
+				a -> changeDetails(fileName, isHidden);
+				a -> changeContents(content);
+			}
+			void createFile(std::string fileName, int fileType, bool isHidden, std::string content)
+			{
+				auto a = std::make_shared<File>();
+				a -> changeDetails(fileName, isHidden, fileType);
+				a -> changeContents(content);
+			}
+			void sortDir()
+			{
+				bool again = false;
+				while (!again) {
+					for (int a = 0; a < subDirectories.size(); a++) {
+						if(a < subDirectories.size() - 1) {
+							if(subDirectories[a] -> getFolderName().compare(subDirectories[a + 1] -> getFolderName()) > 0) {
+								std::iter_swap(subDirectories.begin()+a, subDirectories.begin() + a + 1);
+								again = true;
+							}
+						}
+					}
+					if(again) {
+						again = false;
+					} else {
+						break;
+					}
+				}
+			}
+			void dir()
+			{
+				for (int a = 0; a < subDirectories.size(); a++) {
+					std::cout << subDirectories[a]->getFolderName() << std::endl;
+				}
 			}
 		private:
 			std::string name;
 			bool hidden{};
+
 			std::vector< std::shared_ptr<Directory> > subDirectories{};
 			std::vector<std::shared_ptr<File>> files{};
 	};
-	static std::shared_ptr<Directory> makeDirectory(){
-		return std::make_shared<Directory>();
-	}
-	
 }
+
+auto Computer = std::make_shared<systemFS::Directory>();
 namespace chapter1 {
 
 
-	int actions(), programsList();
+	int terminal(), actions(), programsList();
 	void bootupCinematics();
 
 	int story() // Storyline
 	{
+		Computer -> changeDetails("Computer");
+		Computer -> fullPath = "Computer > ";
 		core::clear();
 		std::cout << termcolor::magenta
 		          << "You are a professional hacker" << std::endl;
@@ -135,7 +244,8 @@ namespace chapter1 {
 		switch (results) {
 			case 0: {
 					// Terminal
-					//terminal();
+					terminal();
+					break;
 				}
 			case 1: {
 					//Programs menu...
@@ -160,34 +270,41 @@ namespace chapter1 {
 		}
 		actions();
 	}
-	int terminal() // Experimental terminal functionality
+	int terminal( ) // Experimental terminal functionality
 	{
 		core::clear();
+		std::cin.ignore();
 		while(true) {
-			std::cout << "Computer > " << std::flush;
+			auto cd = ::Computer;
+			std::string cdStr = cd -> fullPath;
+			std::cout << cdStr << std::flush;
 			std::string command{};
 			std::cin >> command;
-			//Process command
 			break;
 		}
 	}
 	int programsList() // A list of shortcuts to usefull tools within the game
 	{
-		std::vector<std::string> menu{"E-Mail"};
+		std::vector<std::string> menu{"Terminal", "E-Mail"};
 		if(player::internetUnlocked) {
 			menu.push_back("Internet");
 		}
 		if(player::passwordCracker) {
 			menu.push_back("Password Cracker");
 		}
-
 		menu.push_back("Return");
 		int results = core::createMenu("Programs", menu, true);
 		switch (results) {
 			case 0: {
-
+					terminal();
 				}
 			case 1: {
+
+				}
+			case 2: {
+
+				}
+			case 3: {
 
 				}
 			case -1: {

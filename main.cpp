@@ -2,21 +2,20 @@
 #include <vector> // For Vector functionality
 #include <memory> // For memory management, includes std::shared_ptr and std::unique_ptr
 #include <string> // For string variable
-#include <cstdlib> 
-
-#include <windows.h> // For Beep & Sleep functions
-#include <stdlib.h> // For System Pause
 
 #include "termcolor.hpp" // This header contains the functionality of adding colors to 'std::cout'.
-#include "core.hpp" // This header contains the core functionality of the game engine.
-#include "people.hpp" // This header contains the people factory and personality system.
-#include "storyline.hpp" // This header contains the storyboard data for the game.
 #include "player.hpp" // This header contains the namespace used to store player data and progress.
+#include "core.hpp" // This header contains the core functionality of the game engine.
+// #include "people.hpp" // This header contains the people factory and personality system.
+#include "storyline.hpp" // This header contains the storyboard data for the game.
 
-using namespace std;
+
+
+
 void newGame(), continueGame(), chapterSelect(), userSelect(), quit();
 int main()
 {
+
 	core::clear(); // Clear the console of anything before loading the main menu.
 	std::vector<std::string> menu {"New game", "Continue", "Select chapter", "Select user", "Debug", "Quit"};
 	// Prints main menu, duh...
@@ -43,15 +42,27 @@ int main()
 				core::save();
 				core::load();
 				std::cout << player::userName << std::endl
-						  << player::password << std::endl
-						  << player::experience << std::endl;
-
-				auto Computer = systemFS::makeDirectory();
+				          << player::password << std::endl
+				          << player::experience << std::endl;
+				auto Computer = std::make_shared<systemFS::Directory>();
+				Computer -> changeDetails("Computer");
 				Computer -> createDirectory("System");
-				std::cout << Computer -> getSubDirectories()[0] -> getFolderName() << std::endl;
+				Computer -> createDirectory("lols");
+				Computer -> createDirectory("hello");
+				Computer -> createDirectory("bullshit");
+				Computer -> createDirectory("wtf");
+				Computer -> createDirectory("halo");
+				Computer -> createDirectory("Heil Hitler");
+
+				Computer->dir();
+				Computer->sortDir();
+				std::cout << std::endl;
+				Computer->dir();
+				/*std::cout << Computer -> getSubDirectories()[0] -> getFolderName() << std::endl;
 				Computer -> getSubDirectories()[0] -> createDirectory("Networking");
 				Computer -> getSubDirectories()[0] -> getSubDirectories()[0] -> createDirectory("Wireless");
 				std::cout << Computer -> getSubDirectories()[0] -> getSubDirectories()[0] -> getSubDirectories()[0] -> getFolderName() << std::endl;
+				*/
 				system("pause");
 				main();
 				break;
@@ -70,11 +81,11 @@ void newGame()
 {
 	core::clear();
 	std::cout << termcolor::red << termcolor::blink
-			  << "WARNING: All saved games will be deleted." << std::endl
-			  << termcolor::reset << termcolor::red
-			  << "Are you sure you want to start a new game?" << std::endl
-			  << termcolor::green
-			  << "Please enter your choice(y/N): " << std::flush;
+	          << "WARNING: All saved games will be deleted." << std::endl
+	          << termcolor::reset << termcolor::red
+	          << "Are you sure you want to start a new game?" << std::endl
+	          << termcolor::green
+	          << "Please enter your choice(y/N): " << std::flush;
 
 	std::string playerReply{};
 	std::cin >> playerReply;
@@ -87,9 +98,9 @@ void newGame()
 			main();
 	} else {
 		std::cout << termcolor::red
-				  << "ERROR: Invalid response." << std::endl
-				  << termcolor::reset
-				  << "Press any key to continue..." << std::endl;
+		          << "ERROR: Invalid response." << std::endl
+		          << termcolor::reset
+		          << "Press any key to continue..." << std::endl;
 
 		std::cin.get();
 		std::cin.get();
@@ -118,11 +129,11 @@ void continueGame()
 		 break;*/
 		default:
 			std::cout << termcolor::red
-					  << "ERROR: No previous game session detected on this computer" << std::endl
-					  << termcolor::reset
-					  << "Please select \"New Game\" to start a new adventure" << std::endl
-					  << termcolor::reset
-					  << "Press any key to continue..." << std::endl;
+			          << "ERROR: No previous game session detected on this computer" << std::endl
+			          << termcolor::reset
+			          << "Please select \"New Game\" to start a new adventure" << std::endl
+			          << termcolor::reset
+			          << "Press any key to continue..." << std::endl;
 			std::cin.get();
 			std::cin.get();
 			main();
