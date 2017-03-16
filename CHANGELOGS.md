@@ -1,8 +1,13 @@
 Kroz changelogs
 ===============
+#### 17/03/2017
+ * [-] The console functionality has totally been removed as it just had no serious use in the game.
+ * [+] Started using the modularity approach in making the headers. They now only contain the declarations while the .cpp files contain the implementation. 
+
 #### 27/02/2017
  * [+] The virtual directory system now can sort itself and display itself. This function can be called by ```sortDir()``` and ```dir()``` respectively. The ```sortDir()``` sorts the directories in a somewhat odd manner, where anything that is in upper case is guaranteed to be on the top, followed by the lower case directory names. Will hopefully be ironed out in the next commit.
- * [+] Clean out some unused includes and funtions. ```People.hpp``` still exist but is not being used by the program at its current state.
+ * [-] Clean out some unused includes and funtions. ```People.hpp``` still exist but is not being used by the program at its current state.
+
 
 #### 12/02/2017
  * [+]<***EXPERIMENTAL***> A virtual computer with its own virtual file system, you can create new files, create subdirectories, etc. All of these are located in the namespace ```systemFS```

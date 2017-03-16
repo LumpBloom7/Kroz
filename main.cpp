@@ -5,12 +5,9 @@
 
 #include "termcolor.hpp" // This header contains the functionality of adding colors to 'std::cout'.
 #include "player.hpp" // This header contains the namespace used to store player data and progress.
-#include "core.hpp" // This header contains the core functionality of the game engine.
-// #include "people.hpp" // This header contains the people factory and personality system.
-#include "storyline.hpp" // This header contains the storyboard data for the game.
-
-
-
+#include "core.cpp" // This header contains the core functionality of the game engine.
+// #include "people.cpp" // This header contains the people factory and personality system.
+#include "storyline.cpp" // This header contains the storyboard data for the game.
 
 void newGame(), continueGame(), chapterSelect(), userSelect(), quit();
 int main()
@@ -34,8 +31,10 @@ int main()
 				break;
 			}
 		case 4: {
-				std::cout << std::endl << core::console::getPassword("passwordTest: ") << std::endl;
+				std::cout << termcolor::yellow << "DEBUG -- Testing password input." << std::endl;
+				std::cout << std::endl << core::console::getPassword("passwordTest: ") << std::endl << std::endl;
 
+				std::cout << termcolor::yellow << "DEBUG -- Testing File Save functionality." << std::endl;
 				player::userName = "Byte";
 				player::password = "lolbit";
 				player::experience = 25.36;
@@ -43,8 +42,9 @@ int main()
 				core::load();
 				std::cout << player::userName << std::endl
 				          << player::password << std::endl
-				          << player::experience << std::endl;
-				auto Computer = std::make_shared<systemFS::Directory>();
+				          << player::experience << std::endl << std::endl;
+
+				std::cout << termcolor::yellow << "DEBUG -- Testing Directory system." << std::endl;
 				Computer -> changeDetails("Computer");
 				Computer -> createDirectory("System");
 				Computer -> createDirectory("lols");
@@ -53,16 +53,18 @@ int main()
 				Computer -> createDirectory("wtf");
 				Computer -> createDirectory("halo");
 				Computer -> createDirectory("Heil Hitler");
+				std::cout << Computer -> getSubDirectories()[0] -> getFolderName() << std::endl;
+				Computer -> getSubDirectories()[0] -> createDirectory("Networking");
+				Computer -> getSubDirectories()[0] -> getSubDirectories()[0] -> createDirectory("Wireless");
+				std::cout << Computer -> getSubDirectories()[0] -> getSubDirectories()[0] -> getSubDirectories()[0] -> getFolderName() << std::endl << std::endl;
 
+				std::cout << termcolor::yellow << "DEBUG -- Testing directory sorting algorithm." << std::endl;
 				Computer->dir();
 				Computer->sortDir();
 				std::cout << std::endl;
 				Computer->dir();
-				/*std::cout << Computer -> getSubDirectories()[0] -> getFolderName() << std::endl;
-				Computer -> getSubDirectories()[0] -> createDirectory("Networking");
-				Computer -> getSubDirectories()[0] -> getSubDirectories()[0] -> createDirectory("Wireless");
-				std::cout << Computer -> getSubDirectories()[0] -> getSubDirectories()[0] -> getSubDirectories()[0] -> getFolderName() << std::endl;
-				*/
+
+
 				system("pause");
 				main();
 				break;
