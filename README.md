@@ -1,5 +1,7 @@
 Kroz
 ====
+**Announcement: Project Kroz has been put on hold. There is just not much going on here. I spent 2.5 years on this lone-project with little degrees of progress, and I have other ideas I want to work on. I'll move the framework into a new repo and update the framework. But this game itself will not be with it. I may come back in the future to finish up when I feel like it. I learnt a lot from this project.**
+
 
 Kroz is just a codename("Zork" reversed)
 

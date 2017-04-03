@@ -1,5 +1,9 @@
 Kroz changelogs
 ===============
+
+#### 03/04/2017(Final update)
+ * [+] Optimizations
+
 #### 17/03/2017
  * [-] The console functionality has totally been removed as it just had no serious use in the game.
  * [+] Started using the modularity approach in making the headers. They now only contain the declarations while the .cpp files contain the implementation. 

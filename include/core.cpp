@@ -97,6 +97,10 @@ namespace core {
 #endif
 			return password;
 		}
+		void executeCommand(std::string command)
+		{
+			system()
+		}
 	}
 	void save() // Serialize namespace player
 	{
@@ -154,7 +158,7 @@ namespace core {
 #elif defined(Linux) || defined (MacOS)
 		std::cout << "\x1B[2J\x1B[H";
 #else
-	std::cout << termcolor :
+	std::cout << termcolor:
 		          red << "This terminal/console does not support the CLEAR function. Please report this to the game dev." << std::endl;
 #endif
 		std::cout << termcolor::reset;
