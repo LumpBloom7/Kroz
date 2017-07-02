@@ -2,6 +2,8 @@
 
 #include <fstream>
 #include <sys/stat.h>
+#include <cereal/types/vector.hpp>
+#include <cereal/types/string.hpp>
 #include "cereal/archives/json.hpp"
 
 #if defined( _WIN32 ) || defined( _WIN64 )
@@ -60,26 +62,28 @@ namespace core {
       return max.ws.col
 #endif
     }
-    void toggleEcho( bool enable ) // Stops the console from printing anything if disabled.
+    void toggleEcho( const bool &enable ) // Stops the console from printing anything if disabled.
     {
 #if defined( Windows )
       HANDLE hStdin = GetStdHandle( STD_INPUT_HANDLE );
       DWORD mode;
       GetConsoleMode( hStdin, &mode );
 
-      if ( !enable )
+      if ( not enable ) {
         mode &= ~ENABLE_ECHO_INPUT;
-      else
+      } else {
         mode |= ENABLE_ECHO_INPUT;
+      }
 
       SetConsoleMode( hStdin, mode );
 #else
       struct termios tty;
       tcgetattr( STDIN_FILENO, &tty );
-      if ( !enable )
+      if ( not enable ) {
         tty.c_lflag &= ~ECHO;
-      else
+      } else {
         tty.c_lflag |= ECHO;
+      }
 
       (void)tcsetattr( STDIN_FILENO, TCSANOW, &tty );
 #endif
@@ -98,13 +102,13 @@ namespace core {
 #endif
       return password;
     }
-    void executeCommand( std::string command ) {
-      // system()
+    void executeCommand( const char &command ) {
+      // system(command);
     }
   }
   void save() // Serialize namespace player, you can change this to another namespace or object
   {
-    std::string password{};
+    std::string password;
     std::ofstream os( ( "saveData/" + player::userName + ".json" ) );
     cereal::JSONOutputArchive archive( os );
 
@@ -117,7 +121,7 @@ namespace core {
     std::cout << "Please enter your userName: " << std::flush;
     std::cin >> userName;
     if ( core::filesystem::fileExists( "saveData/" + userName + ".json" ) ) {
-      std::string password{""};
+      std::string password;
       std::ifstream is( "saveData/" + userName + ".json" );
       cereal::JSONInputArchive archive( is );
       archive( player::userName, player::password, player::experience );
@@ -162,9 +166,9 @@ namespace core {
     std::cout << termcolor::reset;
   }
 
-  int createMenu( std::string title, std::vector<std::string> menuContent,
-                  bool backEnabled ) // Creates a menu without using the nCurses library, not likely to be efficient.
-                                     // Still needs linux code.
+  int createMenu( const std::string &title, const std::vector<std::string> &menuContent,
+                  const bool &backEnabled ) // Creates a menu without using the nCurses library, not likely to be
+  // efficient. Still needs linux code.
   {
     core::clear();
     int numberOfOptions = menuContent.size() - 1;
@@ -186,7 +190,7 @@ namespace core {
     while ( true ) {
       if ( ( GetAsyncKeyState( VK_UP ) & SHRT_MAX ) && failcheck ) {
         pointerCoord--;
-        if ( pointerCoord < 0 ) pointerCoord = numberOfOptions;
+        if ( pointerCoord < 0 ) { pointerCoord = numberOfOptions; }
         core::clear();
         std::cout << termcolor::bold << termcolor::underline << title << termcolor::reset << std::endl;
         for ( int a = 0; a < menuContent.size(); a++ ) {
@@ -202,7 +206,7 @@ namespace core {
 
       } else if ( ( GetAsyncKeyState( VK_DOWN ) & SHRT_MAX ) && failcheck ) {
         pointerCoord++;
-        if ( pointerCoord > numberOfOptions ) pointerCoord = 0;
+        if ( pointerCoord > numberOfOptions ) { pointerCoord = 0; }
         core::clear();
         std::cout << termcolor::bold << termcolor::underline << title << termcolor::reset << std::endl;
         for ( int a = 0; a < menuContent.size(); a++ ) {

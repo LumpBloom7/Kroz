@@ -25,6 +25,7 @@ Most of the code is improvised, but almost all of it works on all platforms. It 
 
 #### 02/07/2017
  * [+] Redone code formatting to closely match LLVM style
+ * [+] Fixed minor code styling issues
  
 #### 17/03/2017
  * [-] The console functionality has totally been removed as it just had no serious use in the game.

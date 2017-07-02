@@ -3,6 +3,7 @@ Kroz changelogs
 
 #### 02/07/2017
  * [+] Redone code formatting to closely match LLVM style
+ * [+] Fixed minor code styling issues
 
 #### 03/04/2017(Final update)
  * [+] Optimizations
