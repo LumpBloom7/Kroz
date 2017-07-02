@@ -23,6 +23,9 @@ Most of the code is improvised, but almost all of it works on all platforms. It 
 
 ### Changelogs:
 
+#### 02/07/2017
+ * [+] Redone code formatting to closely match LLVM style
+ 
 #### 17/03/2017
  * [-] The console functionality has totally been removed as it just had no serious use in the game.
  * [+] Started using the modularity approach in making the headers. They now only contain the declarations while the .cpp files contain the implementation. 

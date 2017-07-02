@@ -7,8 +7,12 @@
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
-                "databaseFilename": ""
-            }
+                "databaseFilename": "",
+                "path": [
+                    "/usr/include"
+                ]
+            },
+            "intelliSenseMode": "clang-x64"
         },
         {
             "name": "Linux",
@@ -17,25 +21,42 @@
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
-                "databaseFilename": ""
-            }
+                "databaseFilename": "",
+                "path": [
+                    "/usr/include"
+                ]
+            },
+            "intelliSenseMode": "clang-x64"
         },
         {
             "name": "Win32",
             "includePath": [
-                "../../../../../Compilers/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include",
-                "../../../../../Compilers/MinGW64/include",
-                "../../../../../Compilers/MinGW64/x86_64-w64-mingw32/include",
-                "../../../../../Compilers/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++",
-                "../../../../../Compilers/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/backward",
-                "../../../../../Compilers/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include",
-                "../../../../../Compilers/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/ssp",
-                "../../../../../Compilers/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include-fixed",
-                "include/"],
+                "../../../../../Compilers/MinGW64_4.9.2/lib/gcc/x86_64-w64-mingw32/4.9.2/include",
+                "../../../../../Compilers/MinGW64_4.9.2/include",
+                "../../../../../Compilers/MinGW64_4.9.2/x86_64-w64-mingw32/include",
+                "../../../../../Compilers/MinGW64_4.9.2/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++",
+                "../../../../../Compilers/MinGW64_4.9.2/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/backward",
+                "../../../../../Compilers/MinGW64_4.9.2/lib/gcc/x86_64-w64-mingw32/4.9.2/include",
+                "../../../../../Compilers/MinGW64_4.9.2/lib/gcc/x86_64-w64-mingw32/4.9.2/include/ssp",
+                "../../../../../Compilers/MinGW64_4.9.2/lib/gcc/x86_64-w64-mingw32/4.9.2/include-fixed",
+                "include/"
+            ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
-                "databaseFilename": ""
-            }
+                "databaseFilename": "",
+                "path": [
+                    "../../../../../Compilers/MinGW64_4.9.2/lib/gcc/x86_64-w64-mingw32/4.9.2/include",
+                    "../../../../../Compilers/MinGW64_4.9.2/include",
+                    "../../../../../Compilers/MinGW64_4.9.2/x86_64-w64-mingw32/include",
+                    "../../../../../Compilers/MinGW64_4.9.2/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++",
+                    "../../../../../Compilers/MinGW64_4.9.2/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/backward",
+                    "../../../../../Compilers/MinGW64_4.9.2/lib/gcc/x86_64-w64-mingw32/4.9.2/include",
+                    "../../../../../Compilers/MinGW64_4.9.2/lib/gcc/x86_64-w64-mingw32/4.9.2/include/ssp",
+                    "../../../../../Compilers/MinGW64_4.9.2/lib/gcc/x86_64-w64-mingw32/4.9.2/include-fixed",
+                    "include/"
+                ]
+            },
+            "intelliSenseMode": "msvc-x64"
         }
     ]
 }

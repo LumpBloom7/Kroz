@@ -1,6 +1,9 @@
 Kroz changelogs
 ===============
 
+#### 02/07/2017
+ * [+] Redone code formatting to closely match LLVM style
+
 #### 03/04/2017(Final update)
  * [+] Optimizations
 
