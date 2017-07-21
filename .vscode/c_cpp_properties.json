@@ -9,7 +9,8 @@
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": "",
                 "path": [
-                    "/usr/include"
+                    "/usr/include",
+                    "${workspaceRoot}"
                 ]
             },
             "intelliSenseMode": "clang-x64"
@@ -23,7 +24,8 @@
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": "",
                 "path": [
-                    "/usr/include"
+                    "/usr/include",
+                    "${workspaceRoot}"
                 ]
             },
             "intelliSenseMode": "clang-x64"
@@ -53,10 +55,12 @@
                     "../../../../../Compilers/MinGW64_4.9.2/lib/gcc/x86_64-w64-mingw32/4.9.2/include",
                     "../../../../../Compilers/MinGW64_4.9.2/lib/gcc/x86_64-w64-mingw32/4.9.2/include/ssp",
                     "../../../../../Compilers/MinGW64_4.9.2/lib/gcc/x86_64-w64-mingw32/4.9.2/include-fixed",
-                    "include/"
+                    "include/",
+                    "${workspaceRoot}"
                 ]
             },
             "intelliSenseMode": "msvc-x64"
         }
-    ]
+    ],
+    "version": 2
 }

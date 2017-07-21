@@ -1,13 +1,15 @@
 #include <iostream> // For IO functionality
-#include <vector> // For Vector functionality
-#include <memory> // For memory management, includes std::shared_ptr and std::unique_ptr
-#include <string> // For string variable
+#include <vector>   // For Vector functionality
+#include <memory>   // For memory management, includes std::shared_ptr and std::unique_ptr
+#include <string>   // For string variable
 
 #include "termcolor.hpp" // This header contains the functionality of adding colors to 'std::cout'.
-#include "player.hpp" // This header contains the namespace used to store player data and progress.
-#include "core.cpp" // This header contains the core functionality of the game engine.
+#include "player.hpp"    // This header contains the namespace used to store player data and progress.
+
+// This provides some basic functions to ease game development.
+#include "core.cpp"
 // #include "people.cpp" // This header contains the people factory and personality system.
-#include "storyline.cpp" // This header contains the storyboard data for the game.
+#include "storyline.cpp" // This contains the storyboard data for the game.
 
 void newGame(), continueGame(), chapterSelect(), userSelect(), quit();
 int main() {

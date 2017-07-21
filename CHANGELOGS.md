@@ -1,6 +1,11 @@
 Kroz changelogs
 ===============
 
+#### 21/07/2017
+ * [+] Tidied up core.cpp. All OS specific calls are now in their own independent code files and is appropriately called during compilation.
+ * [+] Menus should now work on Linux since the Linux code to get arrow key input is implemented.
+ * [+] Arrow key input is now handled by ```core::getArrowInput()```.
+
 #### 02/07/2017
  * [+] Redone code formatting to closely match LLVM style
  * [+] Fixed minor code styling issues
@@ -10,7 +15,7 @@ Kroz changelogs
 
 #### 17/03/2017
  * [-] The console functionality has totally been removed as it just had no serious use in the game.
- * [+] Started using the modularity approach in making the headers. They now only contain the declarations while the .cpp files contain the implementation. 
+ * [+] Started using the modularity approach in making the headers. They now only contain the declarations while the .cpp files contain the implementation.
 
 #### 27/02/2017
  * [+] The virtual directory system now can sort itself and display itself. This function can be called by ```sortDir()``` and ```dir()``` respectively. The ```sortDir()``` sorts the directories in a somewhat odd manner, where anything that is in upper case is guaranteed to be on the top, followed by the lower case directory names. Will hopefully be ironed out in the next commit.
