@@ -23,14 +23,14 @@ Most of the code is improvised, but almost all of it works on all platforms. It 
 
 ### Changelogs:
 
+#### 24/07/2017
+ * [+] ```core::createMenu()``` now uses switch cases to get key input and do the appropriate stuff.
+ * [+] ```getArrowInput()``` had now been renamed to ```getKeyInput()``` to accurately match its actual function.
+ * [+] The ```ArrowKeys``` enumerator has been renamed to ```Keys``` because it does not only contain arrowKeys.
+
 #### 21/07/2017
  * [+] Tidied up core.cpp. All OS specific calls are now in their own independent code files and is appropriately called during compilation.
  * [+] Menus should now work on Linux since the Linux code to get arrow key input is implemented.
  * [+] Arrow key input is now handled by ```core::getArrowInput()```.
-
-#### 02/07/2017
- * [+] Redone code formatting to closely match LLVM style
- * [+] Fixed minor code styling issues
-
 
 More changes can be found in CHANGELOGS.md

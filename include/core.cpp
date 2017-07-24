@@ -7,6 +7,7 @@
 #include "cereal/types/string.hpp"
 #include "cereal/archives/json.hpp"
 
+// Includes platform specific implementations
 #if defined( _WIN32 ) || defined( _WIN64 )
 #include "winCore.cpp"
 #elif defined( __unix__ ) || defined( __unix )

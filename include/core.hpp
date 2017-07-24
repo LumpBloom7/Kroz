@@ -12,9 +12,9 @@ namespace core {
     std::string
     getPassword( const char *prompt ); // Used to get the password of the user without exposing what they typed.
   }
-  enum ArrowKeys { up = 0, down = 1, left = 2, right = 3, enter = 4, escape = 5, extended = 6 };
-  ArrowKeys getArrowInput();
-  ArrowKeys getArrowInput( bool delayed );
+  enum Keys { up = 0, down = 1, left = 2, right = 3, enter = 4, escape = 5, extended = 6 };
+  Keys getKeyInput();
+  Keys getKeyInput( bool delayed );
   void save();  // Serialize namespace player
   int load();   // Deserialize namespace player
   void clear(); // This is used to clear the screen and reset any formatting changes.

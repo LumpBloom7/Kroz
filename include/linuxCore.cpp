@@ -55,7 +55,7 @@ namespace core {
     std::cout << "\x1B[2J\x1B[H";
     std::cout << termcolor::reset;
   }
-  ArrowKeys getArrowInput() {
+  Keys getArrowInput() {
     int input;
     input = getch();
     switch ( input ) // lets just waste the value
@@ -64,15 +64,15 @@ namespace core {
     case 224:
       switch ( getch() ) // Here the actual code for the key is got
       {
-      case 72: return ArrowKeys::up;
-      case 75: return ArrowKeys::left;
-      case 77: return ArrowKeys::right;
-      case 80: return ArrowKeys::down;
-      default: return ArrowKeys::extended;
+      case 72: return Keys::up;
+      case 75: return Keys::left;
+      case 77: return Keys::right;
+      case 80: return Keys::down;
+      default: return Keys::extended;
       }
     }
   }
-  ArrowKeys getArrowInput( bool delayed ) {
+  Keys getArrowInput( bool delayed ) {
     int input;
     input = getch();
     switch ( input ) // lets just waste the value
@@ -81,11 +81,11 @@ namespace core {
     case 224:
       switch ( getch() ) // Here the actual code for the key is got
       {
-      case 72: return ArrowKeys::up;
-      case 75: return ArrowKeys::left;
-      case 77: return ArrowKeys::right;
-      case 80: return ArrowKeys::down;
-      default: return ArrowKeys::extended;
+      case 72: return Keys::up;
+      case 75: return Keys::left;
+      case 77: return Keys::right;
+      case 80: return Keys::down;
+      default: return Keys::extended;
       }
     }
   }
@@ -106,7 +106,8 @@ namespace core {
     }
     bool failcheck{};
     while ( true ) {
-      if ( getArrowInput() == ArrowKeys::up && failcheck ) {
+      switch ( getArrowInput() ) {
+      case Keys::up: {
         pointerCoord--;
         if ( pointerCoord < 0 ) { pointerCoord = numberOfOptions; }
         core::clear();
@@ -115,8 +116,9 @@ namespace core {
           if ( pointerCoord == a ) { std::cout << termcolor::on_grey; }
           std::cout << menuContent[ a ] << termcolor::reset << std::endl;
         }
-
-      } else if ( getArrowInput() == ArrowKeys::down && failcheck ) {
+        break;
+      }
+      case Keys::down: {
         pointerCoord++;
         if ( pointerCoord > numberOfOptions ) { pointerCoord = 0; }
         core::clear();
@@ -125,14 +127,15 @@ namespace core {
           if ( pointerCoord == a ) { std::cout << termcolor::on_grey; }
           std::cout << menuContent[ a ] << termcolor::reset << std::endl;
         }
-      } else if ( getArrowInput() == ArrowKeys::enter && failcheck ) { // Fix Later
-        std::cin.ignore();
-        return pointerCoord;
-      } else if ( ( backEnabled == true ) && ( getArrowInput() == ArrowKeys::escape && failcheck ) ) { // Fix Later
-        std::cin.ignore();
-        return -1;
+        break;
       }
-      failcheck = true;
+      case Keys::enter: {
+        return pointerCoord;
+      }
+      case Keys::escape: {
+        if ( backEnabled ) { return -1 };
+      }
+      }
     }
     return -1;
   }

@@ -1,6 +1,11 @@
 Kroz changelogs
 ===============
 
+#### 24/07/2017
+ * [+] ```core::createMenu()``` now uses switch cases to get key input and do the appropriate stuff.
+ * [+] ```getArrowInput()``` had now been renamed to ```getKeyInput()``` to accurately match its actual function.
+ * [+] The ```ArrowKeys``` enumerator has been renamed to ```Keys``` because it does not only contain arrowKeys.
+
 #### 21/07/2017
  * [+] Tidied up core.cpp. All OS specific calls are now in their own independent code files and is appropriately called during compilation.
  * [+] Menus should now work on Linux since the Linux code to get arrow key input is implemented.

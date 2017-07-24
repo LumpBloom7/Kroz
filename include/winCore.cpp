@@ -62,24 +62,24 @@ namespace core {
     SetConsoleCursorPosition( console, topLeft );
     std::cout << termcolor::reset;
   }
-  ArrowKeys getArrowInput() {
+  Keys getKeyInput() {
     if ( GetAsyncKeyState( VK_DOWN ) & SHRT_MAX ) {
-      return ArrowKeys::down;
+      return Keys::down;
     } else if ( GetAsyncKeyState( VK_UP ) & SHRT_MAX ) {
-      return ArrowKeys::up;
+      return Keys::up;
     } else if ( GetAsyncKeyState( VK_LEFT ) & SHRT_MAX ) {
-      return ArrowKeys::left;
+      return Keys::left;
     } else if ( GetAsyncKeyState( VK_RIGHT ) & SHRT_MAX ) {
-      return ArrowKeys::right;
+      return Keys::right;
     } else if ( GetAsyncKeyState( VK_RETURN ) & SHRT_MAX ) {
-      return ArrowKeys::enter;
+      return Keys::enter;
     } else if ( GetAsyncKeyState( VK_ESCAPE ) & SHRT_MAX ) {
-      return ArrowKeys::escape;
+      return Keys::escape;
     } else {
-      return ArrowKeys::extended;
+      return Keys::extended;
     }
   }
-  ArrowKeys getArrowInput( bool delayed ) {
+  Keys getKeyInput( bool delayed ) {
     if ( delayed ) {
       GetAsyncKeyState( VK_DOWN );
       GetAsyncKeyState( VK_UP );
@@ -89,19 +89,19 @@ namespace core {
       GetAsyncKeyState( VK_ESCAPE );
     }
     if ( GetAsyncKeyState( VK_DOWN ) & SHRT_MAX ) {
-      return ArrowKeys::down;
+      return Keys::down;
     } else if ( GetAsyncKeyState( VK_UP ) & SHRT_MAX ) {
-      return ArrowKeys::up;
+      return Keys::up;
     } else if ( GetAsyncKeyState( VK_LEFT ) & SHRT_MAX ) {
-      return ArrowKeys::left;
+      return Keys::left;
     } else if ( GetAsyncKeyState( VK_RIGHT ) & SHRT_MAX ) {
-      return ArrowKeys::right;
+      return Keys::right;
     } else if ( GetAsyncKeyState( VK_RETURN ) & SHRT_MAX ) {
-      return ArrowKeys::enter;
+      return Keys::enter;
     } else if ( GetAsyncKeyState( VK_ESCAPE ) & SHRT_MAX ) {
-      return ArrowKeys::escape;
+      return Keys::escape;
     } else {
-      return ArrowKeys::extended;
+      return Keys::extended;
     }
   }
   int createMenu( const std::string &title, const std::vector<std::string> &menuContent, const bool &backEnabled ) {
@@ -117,8 +117,17 @@ namespace core {
     }
     bool failcheck{};
     while ( true ) {
-      ArrowKeys input = getArrowInput();
-      if ( input == ArrowKeys::up && failcheck ) {
+      if ( not failcheck ) {
+        GetAsyncKeyState( VK_DOWN );
+        GetAsyncKeyState( VK_UP );
+        GetAsyncKeyState( VK_LEFT );
+        GetAsyncKeyState( VK_RIGHT );
+        GetAsyncKeyState( VK_RETURN );
+        GetAsyncKeyState( VK_ESCAPE );
+        failcheck = true;
+      }
+      switch ( getKeyInput() ) {
+      case Keys::up: {
         pointerCoord--;
         if ( pointerCoord < 0 ) { pointerCoord = numberOfOptions; }
         core::clear();
@@ -127,8 +136,9 @@ namespace core {
           if ( pointerCoord == a ) { std::cout << termcolor::green << "> "; }
           std::cout << menuContent[ a ] << termcolor::reset << std::endl;
         }
-
-      } else if ( input == ArrowKeys::down && failcheck ) {
+        break;
+      }
+      case Keys::down: {
         pointerCoord++;
         if ( pointerCoord > numberOfOptions ) { pointerCoord = 0; }
         core::clear();
@@ -137,14 +147,15 @@ namespace core {
           if ( pointerCoord == a ) { std::cout << termcolor::green << "> "; }
           std::cout << menuContent[ a ] << termcolor::reset << std::endl;
         }
-      } else if ( input == ArrowKeys::enter && failcheck ) {
-        std::cin.ignore();
-        return pointerCoord;
-      } else if ( ( backEnabled == true ) && ( input == ArrowKeys::escape && failcheck ) ) {
-        std::cin.ignore();
-        return -1;
+        break;
       }
-      failcheck = true;
+      case Keys::enter: {
+        return pointerCoord;
+      }
+      case Keys::escape: {
+        if ( backEnabled ) { return -1; }
+      }
+      }
     }
     return -1;
   }
