@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <unistd.h>
 
-namespace core {
+namespace cligCore {
   namespace console {
     int getConsoleWidth() // Used to get the current Width of the console window
     {
@@ -40,16 +40,6 @@ namespace core {
       // system(command);
     }
   }
-  void save() // Serialize namespace player, you can change this to another namespace or object
-  {
-    std::string password;
-    std::ofstream os( ( "saveData/" + player::userName + ".json" ) );
-    cereal::JSONOutputArchive archive( os );
-
-    archive( CEREAL_NVP( player::userName ), CEREAL_NVP( player::password ),
-             CEREAL_NVP( player::experience ) ); // Names the output the same as the variable name
-  }
-
   void clear() // This is used to clear the screen and reset any formatting changes.
   {
     std::cout << "\x1B[2J\x1B[H";
@@ -94,10 +84,10 @@ namespace core {
                   const bool &backEnabled ) // Creates a menu without using the nCurses library, not likely to be
   // efficient. Still needs linux code.
   {
-    core::clear();
+    cligCore::clear();
     int numberOfOptions = menuContent.size() - 1;
     int pointerCoord = 0;
-    core::clear();
+    cligCore::clear();
     std::cout << termcolor::bold << termcolor::underline << title << termcolor::reset << std::endl;
 
     for ( int a = 0; a < menuContent.size(); a++ ) {
@@ -110,7 +100,7 @@ namespace core {
       case Keys::up: {
         pointerCoord--;
         if ( pointerCoord < 0 ) { pointerCoord = numberOfOptions; }
-        core::clear();
+        cligCore::clear();
         std::cout << termcolor::bold << termcolor::underline << title << termcolor::reset << std::endl;
         for ( int a = 0; a < menuContent.size(); a++ ) {
           if ( pointerCoord == a ) { std::cout << termcolor::on_grey; }
@@ -121,7 +111,7 @@ namespace core {
       case Keys::down: {
         pointerCoord++;
         if ( pointerCoord > numberOfOptions ) { pointerCoord = 0; }
-        core::clear();
+        cligCore::clear();
         std::cout << termcolor::bold << termcolor::underline << title << termcolor::reset << std::endl;
         for ( int a = 0; a < menuContent.size(); a++ ) {
           if ( pointerCoord == a ) { std::cout << termcolor::on_grey; }

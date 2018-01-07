@@ -1,7 +1,7 @@
 #include "windows.h"
 #include <limits.h>
 
-namespace core {
+namespace cligCore {
   namespace console {
 
     int getConsoleWidth() // Used to get the current Width of the console window
@@ -105,10 +105,10 @@ namespace core {
     }
   }
   int createMenu( const std::string &title, const std::vector<std::string> &menuContent, const bool &backEnabled ) {
-    core::clear();
+    cligCore::clear();
     int numberOfOptions = menuContent.size() - 1;
     int pointerCoord = 0;
-    core::clear();
+    cligCore::clear();
     std::cout << title << termcolor::reset << std::endl;
 
     for ( int a = 0; a < menuContent.size(); a++ ) {
@@ -130,7 +130,7 @@ namespace core {
       case Keys::up: {
         pointerCoord--;
         if ( pointerCoord < 0 ) { pointerCoord = numberOfOptions; }
-        core::clear();
+        cligCore::clear();
         std::cout << title << termcolor::reset << std::endl;
         for ( int a = 0; a < menuContent.size(); a++ ) {
           if ( pointerCoord == a ) { std::cout << termcolor::green << "> "; }
@@ -141,7 +141,7 @@ namespace core {
       case Keys::down: {
         pointerCoord++;
         if ( pointerCoord > numberOfOptions ) { pointerCoord = 0; }
-        core::clear();
+        cligCore::clear();
         std::cout << title << termcolor::reset << std::endl;
         for ( int a = 0; a < menuContent.size(); a++ ) {
           if ( pointerCoord == a ) { std::cout << termcolor::green << "> "; }

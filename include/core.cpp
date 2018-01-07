@@ -1,5 +1,4 @@
 #include "core.hpp"
-#include "player.hpp"
 
 #include <fstream>
 #include <sys/stat.h>
@@ -14,7 +13,7 @@
 #include "linuxCore.cpp"
 #endif
 
-namespace core {
+namespace cligCore {
   namespace filesystem {                           // Functions used to read and modify the file system of the user.
     bool fileExists( const std::string &fileName ) // Used to check if a certain file exists with a certain directory
     {
@@ -23,16 +22,18 @@ namespace core {
     }
   }
   void save() // Serialize namespace player, you can change this to another namespace or object
-  {
+  {/*
     std::string password;
     std::ofstream os( ( "saveData/" + player::userName + ".json" ) );
     cereal::JSONOutputArchive archive( os );
 
     archive( CEREAL_NVP( player::userName ), CEREAL_NVP( player::password ),
              CEREAL_NVP( player::experience ) ); // Names the output the same as the variable name
+             */
   }
   int load() // Deserialize namespace player, you can change this to another namespace or object
   {
+    /*
     std::string userName{};
     std::cout << "Please enter your userName: " << std::flush;
     std::cin >> userName;
@@ -56,5 +57,6 @@ namespace core {
                 << std::endl;
       return -1;
     }
+    */
   }
 }

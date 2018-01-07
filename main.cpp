@@ -4,20 +4,20 @@
 #include <string>   // For string variable
 
 #include "termcolor.hpp" // This header contains the functionality of adding colors to 'std::cout'.
-#include "player.hpp"    // This header contains the namespace used to store player data and progress.
 
 // This provides some basic functions to ease game development.
 #include "core.cpp"
 // #include "people.cpp" // This header contains the people factory and personality system.
+#include "player.hpp"
 #include "storyline.cpp" // This contains the storyboard data for the game.
 
 void newGame(), continueGame(), chapterSelect(), userSelect(), quit();
 int main() {
 
-  core::clear(); // Clear the console of anything before loading the main menu.
+  cligCore::clear(); // Clear the console of anything before loading the main menu.
   std::vector<std::string> menu{"New game", "Continue", "Select chapter", "Select user", "Debug", "Quit"};
   // Prints main menu, duh...
-  int playerReply = core::createMenu( "Welcome to Kroz. What would you like to do?", menu, false );
+  int playerReply = cligCore::createMenu( "Welcome to Kroz. What would you like to do?", menu, false );
   switch ( playerReply ) {
   case 0: {
     newGame();
@@ -33,14 +33,14 @@ int main() {
   }
   case 4: {
     std::cout << termcolor::yellow << "DEBUG -- Testing password input." << std::endl;
-    std::cout << std::endl << core::console::getPassword( "passwordTest: " ) << std::endl << std::endl;
+    std::cout << std::endl << cligCore::console::getPassword( "passwordTest: " ) << std::endl << std::endl;
 
     std::cout << termcolor::yellow << "DEBUG -- Testing File Save functionality." << std::endl;
     player::userName = "Byte";
     player::password = "lolbit";
     player::experience = 25.36;
-    core::save();
-    core::load();
+    cligCore::save();
+    cligCore::load();
     std::cout << player::userName << std::endl
               << player::password << std::endl
               << player::experience << std::endl
@@ -83,7 +83,7 @@ int main() {
   return 0;
 }
 void newGame() {
-  core::clear();
+  cligCore::clear();
   std::cout << termcolor::red << termcolor::blink << "WARNING: All saved games will be deleted." << std::endl
             << termcolor::reset << termcolor::red << "Are you sure you want to start a new game?" << std::endl
             << termcolor::green << "Please enter your choice(y/N): " << std::flush;
@@ -107,7 +107,7 @@ void newGame() {
   }
 }
 void continueGame() {
-  core::clear();
+  cligCore::clear();
   int lastPlayedChapter{};
   switch ( lastPlayedChapter ) {
   /*case 1:
@@ -135,7 +135,7 @@ void continueGame() {
   }
 }
 void chapterSelect() {
-  core::clear();
+  cligCore::clear();
   bool chapter3Unlocked{}, chapter4Unlocked{};
   std::vector<std::string> menu{"0. Prologue", "1. Terminal"};
   if ( chapter3Unlocked )
@@ -148,7 +148,7 @@ void chapterSelect() {
   else
     menu.push_back( "3. <LOCKED>" );
 
-  int playerReply = core::createMenu( "Chapter select", menu, true );
+  int playerReply = cligCore::createMenu( "Chapter select", menu, true );
 
   switch ( playerReply ) {
   case 0: {
