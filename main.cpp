@@ -3,10 +3,8 @@
 #include <memory>   // For memory management, includes std::shared_ptr and std::unique_ptr
 #include <string>   // For string variable
 
-#include "termcolor.hpp" // This header contains the functionality of adding colors to 'std::cout'.
-
 // This provides some basic functions to ease game development.
-#include "core.cpp"
+#include "CLI-Gamer/core.cpp"
 // #include "people.cpp" // This header contains the people factory and personality system.
 #include "player.hpp"
 #include "storyline.cpp" // This contains the storyboard data for the game.
@@ -32,20 +30,6 @@ int main() {
     break;
   }
   case 4: {
-    std::cout << termcolor::yellow << "DEBUG -- Testing password input." << std::endl;
-    std::cout << std::endl << cligCore::console::getPassword( "passwordTest: " ) << std::endl << std::endl;
-
-    std::cout << termcolor::yellow << "DEBUG -- Testing File Save functionality." << std::endl;
-    player::userName = "Byte";
-    player::password = "lolbit";
-    player::experience = 25.36;
-    cligCore::save();
-    cligCore::load();
-    std::cout << player::userName << std::endl
-              << player::password << std::endl
-              << player::experience << std::endl
-              << std::endl;
-
     std::cout << termcolor::yellow << "DEBUG -- Testing Directory system." << std::endl;
     Computer->changeDetails( "Computer" );
     Computer->createDirectory( "System" );
